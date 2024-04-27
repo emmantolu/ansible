@@ -55,3 +55,25 @@
         state: present
       when: ansible_distribution == "OracleLinux"
 
+    - name: Creating user pilot
+      tags: pilot
+      user:
+        name: pilot
+        groups: root
+        shell: /bin/bash
+
+    - name: Add ssh key for pilot
+      tags: pilot
+      authorized_key:
+         user: pilot
+         key: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPs7/EnMuPiJFJnZ9QWPbD10gwTo0bwVJ6Rf2Yrhz4xQ Ansible access
+
+    - name: Make pilot sudoer
+      tags: pilot
+      copy:
+        src: sudoer_pilot
+        dest: /etc/sudoers.d/pilot
+        owner: root
+        group: root
+        mode: 0440
+
