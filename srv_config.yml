@@ -37,3 +37,21 @@
           - php
         state: latest
       when: ansible_distribution == "OracleLinux"
+
+    - name: Create webserver admin (Ubuntu)
+      tags: webadmin
+      user:
+        name: webadmin
+        shell: /bin/bash
+        group: www-data
+        state: present
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Create webserver admin (Oracle Linux)
+      tags: webadmin
+      user:
+        name: webadmin
+        group: apache
+        state: present
+      when: ansible_distribution == "OracleLinux"
+

@@ -1,3 +1,14 @@
+[web_servers]
 server1
 server2
 oracle_db
+
+[file_servers]
+server1
+
+[db_servers]
+oracle_db
+
+[work_stations]
+server1
+server2
